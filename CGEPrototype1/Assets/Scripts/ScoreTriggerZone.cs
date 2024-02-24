@@ -13,7 +13,7 @@ public class ScoreTriggerZone : MonoBehaviour
         {
             // Deactivates trigger zone so player can only use once
             active = false;
-            
+
             // Add 1 to the score when the player enters the trigger zone
             ScoreManager.score++;
         }
