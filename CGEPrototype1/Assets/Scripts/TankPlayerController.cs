@@ -23,10 +23,10 @@ public class TankPlayerController : MonoBehaviour
         // Reverses inputs if player is travelling backwards
         if (verticalInput < 0)
         {
-            transform.Rotate(Vector3.forward, Time.deltaTime * -turnSpeed * horizontalInput);
+            transform.Rotate(Vector3.back, Time.deltaTime * -turnSpeed * horizontalInput);
         } else
         {
-            transform.Rotate(Vector3.forward, Time.deltaTime * turnSpeed * horizontalInput);
+            transform.Rotate(Vector3.back, Time.deltaTime * turnSpeed * horizontalInput);
         }
     }
 }
