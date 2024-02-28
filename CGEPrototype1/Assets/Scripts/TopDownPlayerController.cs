@@ -21,8 +21,12 @@ public class TopDownPlayerController : MonoBehaviour
     void Update()
     {
         // Get input values for horizontal/vertical movement
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
+        // GetAxisRaw ensures movement is either 1, 0, or -1
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        // Normalize the movement vector to prevent faster diagonal movement
+        movement.Normalize();
     }
 
     void FixedUpdate()
