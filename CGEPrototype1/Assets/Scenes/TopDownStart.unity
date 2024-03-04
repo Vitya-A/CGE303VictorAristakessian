@@ -5962,7 +5962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5426272984134745041, guid: 8480d79066071d042815f766444dc774, type: 3}
       propertyPath: m_Name
-      value: Panel
+      value: DialoguePanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8480d79066071d042815f766444dc774, type: 3}

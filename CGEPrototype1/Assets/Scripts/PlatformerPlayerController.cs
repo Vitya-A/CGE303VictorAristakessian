@@ -14,11 +14,18 @@ public class PlatformerPlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private float horizontalInput;
-    
+
+    // An audio clip to hold jump sound
+    public AudioClip jumpSound;
+
+    // An audio source to play a sound
+    private AudioSource playerAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAudio = GetComponent<AudioSource>();
 
         if (groundCheck == null)
         {
@@ -37,6 +44,8 @@ public class PlatformerPlayerController : MonoBehaviour
         {
             // Apply an upward force for jumping
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            // Play jump sound effect
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
     }
 
