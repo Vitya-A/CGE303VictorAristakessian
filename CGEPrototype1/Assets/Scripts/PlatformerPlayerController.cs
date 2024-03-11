@@ -42,10 +42,17 @@ public class PlatformerPlayerController : MonoBehaviour
         // Check for jump input
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            if (JumpPad.onJumpPad == true)
+            {
+                jumpForce = 15f;
+            }
+            
             // Apply an upward force for jumping
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             // Play jump sound effect
             playerAudio.PlayOneShot(jumpSound, 1.0f);
+            jumpForce = 10f;
+            JumpPad.onJumpPad = false;
         }
     }
 
@@ -56,7 +63,5 @@ public class PlatformerPlayerController : MonoBehaviour
 
         //  Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        // Ensure the pplayer is f
     }
 }
