@@ -50,3 +50,6 @@ TagManager:
   - name: Decorations
     uniqueID: 4055701753
     locked: 0
+  - name: Projectiles
+    uniqueID: 3408411767
+    locked: 0

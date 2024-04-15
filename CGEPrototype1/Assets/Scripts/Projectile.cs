@@ -12,6 +12,9 @@ public class Projectile : MonoBehaviour
 
     // Damage the projectile will deal
     public int damage = 20;
+
+    // Impact effect prefab for the projectile
+    public GameObject impactEffect;
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,10 @@ public class Projectile : MonoBehaviour
         // Ensures the player collision does not affect the projectile (FirePoint is within the player)
         if (hitInfo.gameObject.tag != "Player")
         {
+            // Instantiate the impact effect
+            Instantiate(impactEffect, transform.position, Quaternion.identity);
+
+            // Destroy the projectile
             Destroy(gameObject);
         }
     }
