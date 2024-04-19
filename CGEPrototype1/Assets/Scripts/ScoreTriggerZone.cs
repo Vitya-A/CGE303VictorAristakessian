@@ -30,6 +30,9 @@ public class ScoreTriggerZone : MonoBehaviour
             //this.gameObject.SetActive(false);
             this.gameObject.GetComponent<Renderer>().material.color = new Color(250, 174, 90, 0f);
 
+            // Destroys once the sound has played
+            Destroy(gameObject, 3);
+
             // Add 1 to the score when the player enters the trigger zone
             ScoreManager.score++;
         }
