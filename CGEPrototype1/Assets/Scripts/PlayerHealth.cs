@@ -24,9 +24,15 @@ public class PlayerHealth : MonoBehaviour
     // Time in seconds to recover when a player has been hit
     public float hitRecoveryTime = 0.2f;
 
+    private AudioSource playerAudio;
+    public AudioClip playerHitSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Set the AudioSource reference
+        playerAudio = GetComponent<AudioSource>();
+        
         // Set the rigidbody reference
         rb = GetComponent<Rigidbody2D>();
 
@@ -60,9 +66,12 @@ public class PlayerHealth : MonoBehaviour
         }
 
         hitRecently = true;
-
-        // Start the coroutine to reset hitRecently
-        StartCoroutine(RecoverFromHit());
+        
+        if (gameObject.activeSelf)
+        {
+            // Start the coroutine to reset hitRecently
+            StartCoroutine(RecoverFromHit());
+        }
 
         // Calculate the direction of the knockback
         Vector2 direction = transform.position - enemyPosition;
@@ -104,20 +113,22 @@ public class PlayerHealth : MonoBehaviour
         {
             // Player dies
             Die();
+        } else
+        {
+            // Play the player hit SFX
+            playerAudio.PlayOneShot(playerHitSound);
         }
     }
 
     // A function to die
-    void Die()
+    public void Die()
     {
         // Declare game over
         ScoreManager.gameOver = true;
 
-        // TODO: Play SFX/animation when player dies
-
         // Instantiate death effect, then destroy after 2 seconds
-        // GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
-        // Destroy(deathEffect, 2f);
+        GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
+        //Destroy(deathEffect, 2f);
 
         // Disable player
         gameObject.SetActive(false);
