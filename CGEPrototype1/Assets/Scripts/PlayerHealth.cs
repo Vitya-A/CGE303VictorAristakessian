@@ -26,15 +26,15 @@ public class PlayerHealth : MonoBehaviour
 
     private AudioSource playerAudio;
     public AudioClip playerHitSound;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Set the AudioSource reference
+        // Set all component references
         playerAudio = GetComponent<AudioSource>();
-        
-        // Set the rigidbody reference
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         // Check if the rb is null
         if (rb == null)
@@ -95,6 +95,9 @@ public class PlayerHealth : MonoBehaviour
 
         // Set hitRecently to false
         hitRecently = false;
+
+        // Cancel the hit animation
+        animator.SetBool("hit", false);
     }
 
     // A function to take damage
@@ -106,8 +109,6 @@ public class PlayerHealth : MonoBehaviour
         // Update the health bar
         healthBar.SetValue(health);
 
-        // TODO: Play SFX/animation when player takes damage
-
         // If the resulting health is less than/equal to 0
         if (health <= 0)
         {
@@ -115,8 +116,9 @@ public class PlayerHealth : MonoBehaviour
             Die();
         } else
         {
-            // Play the player hit SFX
+            // Play the player hit SFX/animation
             playerAudio.PlayOneShot(playerHitSound);
+            animator.SetBool("hit", true);
         }
     }
 

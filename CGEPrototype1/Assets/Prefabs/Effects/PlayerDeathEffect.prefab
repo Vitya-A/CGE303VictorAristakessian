@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: e25aeb209c93fe4458f2bba9dadd50f2, type: 3}
-  volume: 1
+  volume: 0.7
 --- !u!82 &1968972127600943815
 AudioSource:
   m_ObjectHideFlags: 0
