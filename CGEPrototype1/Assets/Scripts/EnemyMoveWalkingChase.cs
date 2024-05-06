@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// Require a Rigidbody2D and Animator
+// Require a Rigidbody2D, Animator, and SpriteRenderer
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 
 public class EnemyMoveWalkingChase : MonoBehaviour
 {
@@ -18,16 +19,18 @@ public class EnemyMoveWalkingChase : MonoBehaviour
     // Transform of the player object
     private Transform playerTransform;
 
-    // Rigidbody/Animator components of the enemy
+    // Components of the enemy
     private Rigidbody2D rb;
     private Animator anim;
+    private SpriteRenderer sr;
     
     // Start is called before the first frame update
     void Start()
     {
-        // Get the Rigidbody2D/Animator components of the enemy
+        // Get the components of the enemy
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
 
         // Get the player transform using the "Player" tag
         playerTransform = GameObject.FindWithTag("Player").transform;
@@ -93,7 +96,8 @@ public class EnemyMoveWalkingChase : MonoBehaviour
     // Checks which direction the player is from the enemy and adjusts the transform accordingly
     private void FacePlayer(Vector2 playerDirection)
     {
-        transform.rotation = (playerDirection.x < 0) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
+        // Flips X if the player is facing left
+        sr.flipX = (playerDirection.x > 0);
     }
 
     // Moves enemy in the direction of the player and adjusts the animation accordingly
