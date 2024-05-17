@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
         }
 
         // Ensures the player collision does not affect the projectile (FirePoint is within the player)
-        if (hitInfo.gameObject.tag != "Player")
+        if (hitInfo.gameObject.tag != "Player" && hitInfo.gameObject.tag != "Collectibles")
         {
             // Instantiate the impact effect
             Instantiate(impactEffect, transform.position, Quaternion.identity);
